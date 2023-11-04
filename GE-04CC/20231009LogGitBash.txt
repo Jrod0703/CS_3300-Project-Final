@@ -1,0 +1,3 @@
+#Comment here, not returned
+#2023/10/09 GE04 Git Bash Log
+cd C:/Users/Standard/groupDocumentation/GE-04CC/portfolio

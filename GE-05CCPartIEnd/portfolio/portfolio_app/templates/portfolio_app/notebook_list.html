@@ -1,0 +1,75 @@
+{% extends 'portfolio_app/home.html' %}
+{% load mathfilters %} <!-- have the django-mathfilters package installed -->
+{% load static %}
+
+{% block content %}
+<h1>ROCKRIMMON GOLF OGS</h1>
+
+<!-- Styles for green text, bold names, increased text size, responsive image size, and buttons -->
+<style>
+
+    
+    .green-text {
+        color: green;
+        font-size: 1.2em;
+    }
+
+    .bold-text {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .image-right img {
+        width: 80%;  
+        max-width: 400px; 
+        height: auto;
+        float: right; 
+    }
+
+    @media (max-width: 768px) {
+        .image-right img {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px; /* Creates space between buttons */
+        color: white;
+    }
+
+    .btn-add {
+        background-color: green;
+    }
+
+    .btn-delete {
+        background-color: red;
+    }
+</style>
+
+<div class="image-right">
+    <img src="{% static 'images/score1.gif' %}" alt="Score Image">
+</div>
+
+<ul>
+{% if notebooks %}
+    {% for notebook in notebooks %}
+        <li>
+            <a href="{% url 'notebook_detail' notebook.id %}" class="bold-text">{{ notebook }}</a>
+            <p class="green-text">Average Score: {{ notebook.average_score|floatformat:0 }}</p>
+        </li>
+    {% endfor %}
+{% else %}
+    <p>There are no notebooks available.</p>
+{% endif %}
+</ul>
+
+<div class="btn-group">
+    <a href="{% url 'add_golfer' %}" class="btn btn-add">Add Golfer</a>
+    <a href="{% url 'delete_golfer' %}" class="btn btn-delete">Delete Golfer</a>
+</div>
+
+{% endblock %}

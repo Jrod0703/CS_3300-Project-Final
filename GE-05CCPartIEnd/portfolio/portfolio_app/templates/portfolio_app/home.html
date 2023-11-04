@@ -1,0 +1,66 @@
+{% load static %}
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rockrimmon Golf Club</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('{% static 'path_to_your_rockrimmon_golf_club_image.jpg' %}');
+            background-size: cover;
+        }
+        .logo-container {
+            text-align: center;
+            background-color: #111;
+            padding: 10px 0;
+        }
+        .logo {
+            max-height: 100px; /* Adjust as necessary */
+            max-width: 100%;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="logo-container">
+        <img src="{% static 'images/RockRim2.gif' %}" alt="Rockrimmon Golf Club Logo" class="logo">
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <!-- Removed the image from here since it's already in the logo-container -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+            aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" href="{% url 'index' %}">Home</a>
+                    <a class="nav-link" href="{% url 'hours_of_operation' %}">Hours of Operation</a>
+                    <a class="nav-link" href="{% url 'notebook_list' %}">View Notebooks</a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+        <!-- The content block where you can inject page-specific content -->
+        <div style="padding:20px;">
+            <h1>Welcome to Rockrimmon Golf Club</h1>
+            <!-- Other content goes here -->
+        </div>
+    {% endblock %}
+</body>
+</html>

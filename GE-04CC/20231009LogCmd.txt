@@ -1,0 +1,80 @@
+REM Comment here, not returned
+#2023/10/09 GE04 Command Prompt Log
+cd C:/Users/Standard/groupDocumentation/GE-04CC/portfolio
+set PATH=%PATH%;C:\Users\Standard\AppData\Roaming\Python\Python311\Scripts\
+workon my_django_environment
+python manage.py runserver
+REM Begin GE04 Section 2
+REM Opened browser and navigated to the following pages
+REM https://www.w3schools.com/html/html_elements.asp
+REM Used for h1 heading, p name, and h3 subheading
+REM https://www.w3schools.com/html/html_lists.asp
+REM Used for unordered list (for bullet points) and items
+REM https://www.w3schools.com/html/html_links.asp
+REM Used to surround our a/hyperlink tags with an href/url,
+REM  and a target/behavior, with our href/text rendered/cickable
+REM Included target attribute options in a comment within the HTML code
+REM https://www.w3schools.com/html/html_images.asp
+REM Relevant to our static UCCS logo
+REM https://www.w3schools.com/html/html_tables.asp
+REM Will soon be relevant to rendering data surrounded on all sides with borders
+REM https://www.w3schools.com/html/html_comments.asp
+REM Used to add comments to HTML code, both inline and section/block applications applied
+REM https://www.w3schools.com/html/tryit.asp?filename=tryhtml_basic_link
+REM Used to initially test the W3Schools HTML Online Editor Code.html webpage rendering
+REM https://www.w3schools.com/html/html_forms.asp
+REM Used to review input options for our users
+
+REM Begin GE04 Section 3
+REM https://www.w3schools.com/css/css_intro.asp
+REM Used to review Cascading Style Sheets (CSS) application to our HTML Structure
+REM, class to HTML tag coordinated CSS/HTML pairs, with applied attributes
+REM https://www.w3schools.com/Tags/tag_div.asp
+REM Used to containerize lines of HTML code to control execution/rendering
+REM In our case, we use div tags to surround code we want styled, and additionally
+REM  this page demonstrates a custom CSS class, to apply attibutes to sections of code,
+REM  without our class to html tag pair, 1 advantage and 1 disadvantage of this below:
+REM  Advantage-custom code for the same tags in different areas of our HTML
+REM  Disadvantage-must be manually applied and customized, whereas our pairs are a pattern
+REM  Paired and custom CSS classes both help scale style applications and reduce errors
+REM   either way.
+REM https://www.w3schools.com/cssref/sel_class.php
+REM Used to define custom classes, and include the required reference
+REM  to them inline from our HTML code
+REM https://www.w3schools.com/html/html_classes.asp
+REM Further demonstration of the reference for a custom class
+REM https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_basic
+REM Used to develop our HTML code with styles (a separate CSS file is alternately available locally)
+REM https://www.w3schools.com/css/css_comments.asp
+REM Used to apply line by line necessary comments in CSS, both inline and block options
+REM Note: The .button class is required for example, but an h2 class can be a CSS/HTML pair.
+REM  This is required for individual application of the styling, especially to user input elements
+REM  The main reason is the style is applied differently when button is called because the type
+REM  attribute is changed per button (of the original 4), and will have different instances,
+REM  Whereas the class allows the attributes to be inherited, even though the types will make each
+REM  button its own instance. h2 Does not have this problem, it is not a specifically instantiated element
+
+REM Begin GE04 Section 4
+REM Will return after finishing the coding sections
+REM Will refer to this last week's PowerPoint slides
+
+REM Begin GE04 Section 5
+REM https://www.w3schools.com/bootstrap5/
+REM Available to test bootstrap inline code
+REM https://getbootstrap.com/docs/5.2/layout/containers/
+REM Available to review for containers
+REM https://getbootstrap.com/docs/5.2/examples/
+REM Available to review for examples
+REM https://getbootstrap.com/docs/5.2/getting-started/accessibility/
+REM Available to review for additional accessibility implementations using Bootstrap
+REM https://getbootstrap.com/docs/5.2/examples/navbars/ (third option, Expand at sm)
+REM Used to identify code and migrate to the HTML page for GE04.
+REM Migrated the HTML using web developer tools inspect, point and click
+REM Used Filter Styles to locate the styles to add to the CSS
+REM https://getbootstrap.com/docs/5.2/examples/pricing/
+REM Modified code to match our account, sign in, and sign up options, in addition to the home button and containers/column-based pricing template for the project titles and buttons conveniently.
+
+REM Begin GE04 Section 6
+REM https://onecompiler.com/bootstrap
+REM Used to implement the template code and add a navigation menu etc.
+REM Used web browser resources, did not need to execute HTML code from Django.

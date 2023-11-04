@@ -1,0 +1,22 @@
+{% extends 'portfolio_app/home.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Confirmation</title>
+</head>
+<body>
+
+<h2>Are you sure you want to delete this golf round?</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirm Delete">
+    <a href="{% url 'round_detail' round.id %}">Cancel</a>
+</form>
+
+</body>
+</html>
+

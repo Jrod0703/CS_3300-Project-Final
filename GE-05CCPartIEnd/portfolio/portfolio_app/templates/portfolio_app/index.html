@@ -1,0 +1,29 @@
+<!-- inherit from base.html -->
+{% extends 'portfolio_app/home.html' %}
+
+<!-- Add head block if you want to include custom styles in the head -->
+{% block head %}
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+
+{% endblock %}
+
+{% block content %}
+<div class="container text-center no-gaps my-4">
+    <h1 style="color: green;">Welcome to the Rockrimmon Golf Club's App!</h1>
+    <p style="color: black;">Where keeping score is as easy as finding your ball in the rough.</p>
+    
+    <h2 style="color: green;">WHO WE ARE & WHY WE EXIST</h2>
+    <p style="color: black;">Think of us as your caddy for the digital age, minus the judgy looks.</p>
+    
+    <h3 style="color: green;">Your Scorecard, Reimagined</h3>
+    <p style="color: black;">Want a scorecard that doesn't get soggy? Our app is as waterproof as your best rain jacket. Worried about adding up your strokes? Our app does math better than a pro with a pencil.</p>
+    
+    <h3 style="color: green;">A Handicap That's Actually Handy</h3>
+    <p style="color: black;">We average all your scores into a handicap that's so accurate, it might just make your golf buddies a tiny bit jealous. Now you can compete with your pals at Rockrimmon with more than just pride on the line.</p>
+    <p style="color: black;">Join us, where the only thing lower than your new handicap will be the chance of you wanting to return to paper scorecards. Challenge your friends, track your progress, and set your sights on a new personal best.</p>
+    <p style="color: black;">Remember, at Rockrimmon, we keep the fun in the game and the game in your phone. So you can focus on the important things—like celebrating at the 19th hole.</p>
+</div>
+
+{% endblock %}

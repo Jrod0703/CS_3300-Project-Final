@@ -1,0 +1,122 @@
+{% extends 'portfolio_app/home.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style>
+  
+  .content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: row;
+    padding: 10px;
+  }
+
+  .image-left, .image-right {
+    width: 20%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-left img, .image-right img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+
+  .hours-operation {
+    width: 60%;  /* Adjusted to fit between the images */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .hours-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 3vw; /* Use viewport width for responsive font sizing */
+    max-font-size: 24px; /* You can set a maximum font size if required */
+  }
+
+  .hours-list li {
+    margin: 1vw 0;
+    max-margin: 10px 0; /* Maximum margin to avoid too much space on large screens */
+  }
+
+  .hours-list .day {
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
+
+  .hours-list .time {
+    font-weight: normal;
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 600px) {
+    .hours-list {
+      font-size: 5vw; /* Larger font size for very small widths */
+    }
+  }
+
+  /* If you want to emphasize weekend times */
+  .hours-list .weekend .day,
+  .hours-list .weekend .time {
+    color: #D35400; /* Example color, change as desired */
+    font-weight: bold;
+  }
+</style>
+
+<div class="content-container">
+    <div class="image-left">
+        <img src="{% static 'images/green1.gif' %}" alt="Left Image">
+    </div>
+
+    <div class="hours-operation">
+      <h2 style="color: green;"><strong>Hours of Operation</strong></h2>
+
+        <ul class="hours-list">
+            <li>
+                <span class="day">Monday:</span>
+                <span class="time">7:00 AM - 8:00 PM</span>
+            </li>
+            <li>
+                <span class="day">Tuesday:</span>
+                <span class="time">7:00 AM - 8:00 PM</span>
+            </li>
+            <li>
+                <span class="day">Wednesday:</span>
+                <span class="time">7:00 AM - 8:00 PM</span>
+            </li>
+            <li>
+                <span class="day">Thursday:</span>
+                <span class="time">7:00 AM - 8:00 PM</span>
+            </li>
+            <li>
+                <span class="day">Friday:</span>
+                <span class="time">7:00 AM - 9:00 PM</span>
+            </li>
+            <li class="weekend">
+                <span class="day">Saturday:</span>
+                <span class="time">6:00 AM - 9:00 PM</span>
+            </li>
+            <li class="weekend">
+                <span class="day">Sunday:</span>
+                <span class="time">6:00 AM - 8:00 PM</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="image-right">
+        <img src="{% static 'images/green2.gif' %}" alt="Right Image">
+    </div>
+</div>
+
+{% endblock %}

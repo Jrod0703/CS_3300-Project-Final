@@ -1,0 +1,25 @@
+{% extends 'portfolio_app/home.html' %}
+{% block content %}
+<h1>{{ notebook.golfer.name }}'s Notebook</h1>
+
+
+
+<h2>Golf Rounds:</h2>
+<ul>
+    {% for round in golf_rounds %}
+    <li>
+        Date: {{ round.date }} | Score: {{ round.score }} 
+        <a href="{% url 'update_round' round.id %}">Edit</a>
+        <a href="{% url 'delete_round' round.id %}">Delete</a>
+    </li>
+    {% empty %}
+    <li>No golf rounds available.</li>
+    {% endfor %}
+</ul>
+<h3>Add New Round</h3>
+<a href="{% url 'add_round' notebook.id %}">Add Round</a>
+{% endblock %}
+
+
+
+
