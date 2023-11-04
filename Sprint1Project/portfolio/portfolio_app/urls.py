@@ -7,11 +7,11 @@ urlpatterns = [
     path('', views.index, name='index'),  # index as the homepage
     path('hours-of-operation/', views.hours_of_operation, name='hours_of_operation'),
     
-    # Updating notebook-related URLs to use class-based views
+    # updating notebook-related URLs to use class-based views
     path('notebooks/', views.NotebookListView.as_view(), name='notebook_list'),
     path('notebooks/<int:pk>/', views.NotebookDetailView.as_view(), name='notebook_detail'),
 
-    # URL patterns for updating and deleting rounds, and for the golfer, notebook, and round list and detail views
+    # urls patterns for updating and deleting rounds, and for the golfer, notebook, and round list and detail views
     path('round/add/<int:notebook_id>/', views.add_round, name='add_round'),
     path('rounds/<int:pk>/delete/', views.delete_round, name='delete_round'),
     path('rounds/<int:pk>/update/', views.update_round, name='update_round'),

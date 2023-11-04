@@ -64,10 +64,10 @@ def add_golfer(request):
         if form.is_valid():
             try:
                 new_golfer = form.save()
-                # Assuming a new Notebook is created for each Golfer
+                #  a new Notebook is created for each Golfer
                 new_notebook = Notebook.objects.create(golfer=new_golfer)
                 messages.success(request, "Golfer added successfully!")
-                return redirect('notebook_detail', pk=new_notebook.pk)  # Redirect to the detail view of the new Notebook
+                return redirect('notebook_detail', pk=new_notebook.pk)  # redirect to the detail view of the new Notebook
             except IntegrityError:
                 form.add_error('email', 'A golfer with that email already exists.')
     else:
@@ -79,19 +79,18 @@ def delete_golfer(request):
     if request.method == 'POST':
         golfer_name = request.POST.get('name')
         try:
-            # Try to get the Golfer object by name
+            # tries to get the Golfer object by name
             golfer_to_delete = Golfer.objects.get(name=golfer_name)
             golfer_to_delete.delete()
-            # If successful, send a success message
+            # if successful, send a success message
             messages.success(request, "Golfer deleted successfully!")
         except Golfer.DoesNotExist:
-            # If the Golfer object is not found, send an error message
-            # You can comment out the next line if you don't want to show an error message
+            # if the Golfer object is not found, send an error message
             messages.error(request, "Golfer not found.")
-        # Redirect to the home page regardless of the outcome
+        # redirect to the home page regardless of the outcome
         return redirect('index')
 
-    # If the request is not POST, render the delete page
+    # if the request is not POST, render the delete page
     return render(request, 'portfolio_app/delete_golfer.html')
 
 
