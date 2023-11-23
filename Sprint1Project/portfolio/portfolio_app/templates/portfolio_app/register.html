@@ -1,0 +1,13 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ golfer_form.as_p }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
+{% endblock %}
