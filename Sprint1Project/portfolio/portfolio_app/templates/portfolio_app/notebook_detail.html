@@ -1,25 +1,70 @@
+
 {% extends 'portfolio_app/home.html' %}
+
 {% block content %}
-<h1>{{ notebook.golfer.name }}'s Notebook</h1>
+<div class="container mt-3">
+    <div class="row">
+        <!-- Golf Rounds on the left -->
+        <div class="col-md-8">
+            <h1>{{ notebook.golfer.user.username }}'s Notebook</h1>
+            <h2>Golf Rounds:</h2>
+            <ul class="list-unstyled">
+                {% for round in golf_rounds %}
+                <li class="mb-2">
+                    Date: {{ round.date }} | Score: {{ round.score }}
+                    {% if notebook.golfer.user == request.user %}
+                        <!-- Only show edit and delete to the owner -->
+                        <a href="{% url 'update_round' round.id %}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{% url 'delete_round' round.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    {% endif %}
+                </li>
+                {% empty %}
+                <li>No golf rounds available.</li>
+                {% endfor %}
+            </ul>
 
-
-
-<h2>Golf Rounds:</h2>
-<ul>
-    {% for round in golf_rounds %}
-    <li>
-        Date: {{ round.date }} | Score: {{ round.score }} 
-        <a href="{% url 'update_round' round.id %}">Edit</a>
-        <a href="{% url 'delete_round' round.id %}">Delete</a>
-    </li>
-    {% empty %}
-    <li>No golf rounds available.</li>
-    {% endfor %}
-</ul>
-<h3>Add New Round</h3>
-<a href="{% url 'add_round' notebook.id %}">Add Round</a>
+            {% if notebook.golfer.user == request.user %}
+                <a href="{% url 'add_round' notebook.id %}" class="btn btn-success">Add New Round</a>
+            {% endif %}
+        </div>
+        
+        <!-- File upload and media on the right -->
+        <div class="col-md-4">
+            {% if notebook.golfer.user == request.user %}
+                <form method="post" action="{% url 'upload_file_to_notebook' notebook.id %}" enctype="multipart/form-data" class="mb-3">
+                    {% csrf_token %}
+                    <input type="file" name="file_field" class="form-control" accept="image/*,video/*" required>
+                    <button type="submit" class="btn btn-primary mt-2">Upload File</button>
+                </form>
+            {% endif %}
+        
+            {% if notebook.image %}
+                <div class="border border-success p-2 mb-3" data-media-type="image">
+                    <img src="{{ notebook.image.url }}" alt="Notebook Image" class="img-fluid">
+                    {% if notebook.golfer.user == request.user %}
+                        <form method="post" action="{% url 'delete_media' notebook.id 'image' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm mt-2">Delete Image</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endif %}
+        
+            {% if notebook.video %}
+                <div class="border border-success p-2" data-media-type="video">
+                    <video controls class="w-100">
+                        <source src="{{ notebook.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    {% if notebook.golfer.user == request.user %}
+                        <form method="post" action="{% url 'delete_media' notebook.id 'video' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm mt-2">Delete Video</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
-
-
-
-

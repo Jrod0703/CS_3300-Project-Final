@@ -14,6 +14,9 @@ import os
 
 from pathlib import Path
 
+#allows us to access the log into the login url
+LOGIN_URL = 'login'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,9 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'portfolio_app',
+    
     'bootstrap5',
-    'mathfilters'
+    'mathfilters',
+    'portfolio_app.apps.PortfolioAppConfig',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -63,7 +67,7 @@ ROOT_URLCONF = 'django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'portfolio_app/templates/portfolio_app')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

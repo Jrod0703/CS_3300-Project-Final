@@ -3,73 +3,58 @@
 {% load static %}
 
 {% block content %}
-<h1>ROCKRIMMON GOLF OGS</h1>
+<div class="container mt-4 mb-4">
+    <h1 class="text-center text-primary mb-3">ROCKRIMMON GOLF OGS</h1>
 
-<!-- Styles for green text, bold names, increased text size, responsive image size, and buttons -->
-<style>
+    <div class="row">
+        <!-- This column is for the notebooks list -->
+        <div class="col-lg-8 col-md-7 mb-4">
+            <ul class="list-group">
+                {% if notebooks %}
+                    {% for notebook in notebooks %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <a href="{% url 'notebook_detail' notebook.id %}" class="text-success fw-bold">{{ notebook }}</a>
+                                <div>Average Score: <span class="badge bg-secondary">{{ notebook.average_score|floatformat:0 }}</span></div>
+                            </div>
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.is_staff or notebook.golfer.user == request.user %}
+                                    <div>
+                                        <a href="{% url 'add_round' notebook.id %}" class="btn btn-sm btn-success me-2">Add Round</a>
+                                        <a href="{% url 'delete_round' notebook.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item">There are no notebooks available.</li>
+                {% endif %}
+            </ul>
+        </div>
 
-    
-    .green-text {
-        color: green;
-        font-size: 1.2em;
-    }
+        <!-- This column is for the image -->
+        <div class="col-lg-4 col-md-5 mb-4">
+            <img src="{% static 'images/score1.gif' %}" alt="Score Image" class="img-fluid">
+        </div>
+    </div>
 
-    .bold-text {
-        font-weight: bold;
-        font-size: 1.2em;
-    }
-
-    .image-right img {
-        width: 80%;  
-        max-width: 400px; 
-        height: auto;
-        float: right; 
-    }
-
-    @media (max-width: 768px) {
-        .image-right img {
-            width: 100%;
-            max-width: 100%;
-        }
-    }
-
-    .btn {
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-        margin-right: 10px; /* Creates space between buttons */
-        color: white;
-    }
-
-    .btn-add {
-        background-color: green;
-    }
-
-    .btn-delete {
-        background-color: red;
-    }
-</style>
-
-<div class="image-right">
-    <img src="{% static 'images/score1.gif' %}" alt="Score Image">
+    <!-- Leaderboard Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <h2 class="text-center mb-3">Leaderboard</h2>
+            {% with notebooks|dictsort:"average_score" as sorted_notebooks %}
+                {% if sorted_notebooks %}
+                    {% with sorted_notebooks.0 as leader %}
+                        <div class="alert alert-success" role="alert">
+                            <strong>Leader:</strong> {{ leader.golfer.user.username }} with an average score of {{ leader.average_score|floatformat:0 }}
+                        </div>
+                    {% endwith %}
+                {% else %}
+                    <p class="text-center">No scores to display on the leaderboard.</p>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
 </div>
-
-<ul>
-{% if notebooks %}
-    {% for notebook in notebooks %}
-        <li>
-            <a href="{% url 'notebook_detail' notebook.id %}" class="bold-text">{{ notebook }}</a>
-            <p class="green-text">Average Score: {{ notebook.average_score|floatformat:0 }}</p>
-        </li>
-    {% endfor %}
-{% else %}
-    <p>There are no notebooks available.</p>
-{% endif %}
-</ul>
-
-<div class="btn-group">
-    <a href="{% url 'add_golfer' %}" class="btn btn-add">Add Golfer</a>
-    <a href="{% url 'delete_golfer' %}" class="btn btn-delete">Delete Golfer</a>
-</div>
-
 {% endblock %}
